@@ -1,0 +1,10 @@
+{
+  "name": "benchmark-restify-hapi",
+  "version": "0.0.1",
+  "description": "Benchmark of Restify and Hapi",
+  "main": "restify.js",
+  "dependencies": {
+    "hapi": "^8.2.0",
+    "restify": "^2.8.5"
+  }
+}
