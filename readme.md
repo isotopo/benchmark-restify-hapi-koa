@@ -6,13 +6,13 @@ Benchmark of Restify and Hapi
 ```
 > Benchmarking restify.js
 
-  Testing 1000 routes
+  Testing 4000 routes
 
   ...
 
 > Benchmarking hapi.js
 
-  Testing 1000 routes
+  Testing 4000 routes
 
   ...
 

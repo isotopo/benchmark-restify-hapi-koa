@@ -7,10 +7,6 @@ var server = restify.createServer({
 server.use(restify.fullResponse());
 server.use(restify.bodyParser());
 
-var getRandomNumber = function (min, max) {
-  return Math.floor(Math.random() * (max - min)) + min;
-};
-
 var createGetRoute = function (route) {
   console.log('Route GET [' + route + ']');
   server.get(route, function (req, res) {
@@ -39,14 +35,11 @@ var createDeleteRoute = function (route) {
   });
 };
 
-var methods = [createGetRoute, createPostRoute, createPutRoute, createDeleteRoute];
-
-for (var i = 0; i < config.routes; i++) {
-
-  var number = getRandomNumber(0, 10000000);
-  var method = getRandomNumber(0, 3);
-
-  methods[method]('/api/' + number);
+for (var i = 1; i <= config.routes; i++) {
+  createGetRoute('/api/' + i);
+  createPutRoute('/api/' + i);
+  createPostRoute('/api/' + i);
+  createDeleteRoute('/api/' + i);
 }
 
 server.listen(process.env.PORT || config.ports.restify, function () {

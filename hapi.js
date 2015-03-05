@@ -3,10 +3,6 @@ var Hapi = require('hapi');
 var server = new Hapi.Server();
 server.connection({ port: process.env.PORT || config.ports.hapi });
 
-var getRandomNumber = function (min, max) {
-  return Math.floor(Math.random() * (max - min)) + min;
-};
-
 var createRoute = function (method, route) {
   var statusCode = 200;
 
@@ -45,14 +41,11 @@ var createDeleteRoute = function (route) {
   createRoute('DELETE', route);
 };
 
-var methods = [createGetRoute, createPostRoute, createPutRoute, createDeleteRoute];
-
-for (var i = 0; i < config.routes; i++) {
-
-  var number = getRandomNumber(0, 10000000);
-  var method = getRandomNumber(0, 3);
-
-  methods[method]('/api/' + number);
+for (var i = 1; i <= config.routes; i++) {
+  createGetRoute('/api/' + i);
+  createPutRoute('/api/' + i);
+  createPostRoute('/api/' + i);
+  createDeleteRoute('/api/' + i);
 }
 
 server.start(function () {
