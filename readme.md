@@ -32,6 +32,7 @@ node hapi.js
 ```
 
 
+
 # Set the appropriate configuration in .benchmarkrc (ignored by git)
 
 ```
