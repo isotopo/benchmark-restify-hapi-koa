@@ -9,8 +9,8 @@ var conf = require('rc')('benchmark', {
 		restify: 'http://localhost:3000/',
 		hapi: 'http://localhost:4000/',
 	},
-	routes: 10,
-	name: 'REST-API'
+	routes: 10
+	
 });
 
 module.exports = conf;
