@@ -1,10 +1,13 @@
+'use strict';
+
+
 var fs = require('fs'),
 	apiBenchmark = require('api-benchmark'),
 	config = require('./config');
 
 
 
-var services = {	
+var services = {
 	restify: 'http://localhost:3000/',
 	hapi: 'http://localhost:4000/',
 };
@@ -29,24 +32,46 @@ for (var i = 1; i <= config.routes; i++) {
 	routes['DELETE/api/' + i] = {
 		method: 'delete',
 		route: '/api/' + i
-	}
+	};
 }
-
 
 
 
 apiBenchmark.measure(services, routes, function(err, results) {
 
-	apiBenchmark.getHtml(results, function(error, html) {
+	console.log('API benchmark results (total request: %s): ', config.routes);
 
-		fs.writeFile('./report.html', html, function(err) {
-			if (err) {
-				console.log(err);
-			} else {
-				console.log('The file was saved!');
-			}
-		});
+	var wrapResults = {
+		info: {
+			totalRequest: config.routes
+		},
+		results: results
+	};
 
+
+	if (typeof(results.restify.isFastest) !== 'undefined') {
+		console.log('Restify is Fastest');
+		wrapResults.info.fastest = 'Restify';
+		wrapResults.info.slowest = 'Hapi';
+	}
+
+	if (typeof(results.hapi.isFastest) !== 'undefined') {
+		console.log('Hapi is Fastest');
+		wrapResults.info.fastest = 'Hapi';
+		wrapResults.info.slowest = 'Restify';
+	}
+
+
+	//	apiBenchmark.getHtml(results, function(error, html) {
+
+	fs.writeFile('./report-request-' + config.routes + '.json', JSON.stringify(wrapResults), function(err) {
+		if (err) {
+			console.log(err);
+		} else {
+			console.log('The file was saved!');
+		}
 	});
+
+	//	});
 
 });
