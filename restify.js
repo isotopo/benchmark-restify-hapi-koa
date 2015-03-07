@@ -1,7 +1,7 @@
 var config = require('./config');
 var restify = require('restify');
 var server = restify.createServer({
-  name: config.name
+  name: 'Restify'
 });
 
 server.use(restify.fullResponse());
@@ -31,7 +31,7 @@ var createPostRoute = function (route) {
 var createDeleteRoute = function (route) {
   console.log('Route DELETE [' + route + ']');
   server.del(route, function (req, res) {
-    res.send(204);
+    res.send(200);
   });
 };
 

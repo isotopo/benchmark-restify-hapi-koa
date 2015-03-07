@@ -11,7 +11,7 @@ var createRoute = function (method, route) {
   }
 
   if (method === 'DELETE') {
-    statusCode = 204;
+    statusCode = 200;
   }
 
   console.log('Route ' + method + ' [' + route + ']');
@@ -49,5 +49,5 @@ for (var i = 1; i <= config.routes; i++) {
 }
 
 server.start(function () {
-  console.log('%s listening at %s', config.name, server.info.uri);
+  console.log('%s listening at %s', 'Hapi', server.info.uri);
 });
