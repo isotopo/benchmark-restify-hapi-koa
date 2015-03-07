@@ -7,10 +7,8 @@ var fs = require('fs'),
 
 
 
-var services = {
-	restify: 'http://localhost:3000/',
-	hapi: 'http://localhost:4000/',
-};
+var services = config.servers;
+
 
 
 var routes = {};
