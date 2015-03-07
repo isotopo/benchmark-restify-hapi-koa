@@ -4,6 +4,7 @@
   "description": "Benchmark of Restify and Hapi",
   "main": "restify.js",
   "dependencies": {
+    "api-benchmark": "^0.2.1",
     "hapi": "^8.2.0",
     "restify": "^2.8.5"
   }
