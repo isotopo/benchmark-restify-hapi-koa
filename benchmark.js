@@ -3,15 +3,11 @@
 
 var fs = require('fs'),
 	apiBenchmark = require('api-benchmark'),
-	config = require('./config');
+	config = require('./config'),
+	benchmarkParse = require('./benchmark-parse'),
+	services = config.servers,
+	routes = {};
 
-
-
-var services = config.servers;
-
-
-
-var routes = {};
 
 
 for (var i = 1; i <= config.routes; i++) {
@@ -21,10 +17,18 @@ for (var i = 1; i <= config.routes; i++) {
 	};
 	routes['POST/api/' + i] = {
 		method: 'post',
+		data: {
+			test: true,
+			moreData: 'aString'
+		},
 		route: '/api/' + i
 	};
 	routes['PUT/api/' + i] = {
 		method: 'put',
+		data: {
+			test: true,
+			moreData: 'aString'
+		},
 		route: '/api/' + i
 	};
 	routes['DELETE/api/' + i] = {
@@ -37,39 +41,26 @@ for (var i = 1; i <= config.routes; i++) {
 
 apiBenchmark.measure(services, routes, function(err, results) {
 
-	console.log('API benchmark results (total request: %s): ', config.routes);
+	var wrapResults = benchmarkParse.getInfo(results, routes);
 
-	var wrapResults = {
-		info: {
-			totalRequest: config.routes
-		},
-		results: results
-	};
+	// -
+	//
+	benchmarkParse.createReport(wrapResults);
 
+	// -
+	//
+	apiBenchmark.getHtml(results, function(error, html) {
 
-	if (typeof(results.restify.isFastest) !== 'undefined') {
-		console.log('Restify is Fastest');
-		wrapResults.info.fastest = 'Restify';
-		wrapResults.info.slowest = 'Hapi';
-	}
+		fs.writeFile('./reports/report-all-routes-' + config.routes + '-' + config.network + '.html', html, function(err) {
+			if (err) {
+				console.log(err);
+			} else {
+				console.log('The json file was saved!');
+			}
 
-	if (typeof(results.hapi.isFastest) !== 'undefined') {
-		console.log('Hapi is Fastest');
-		wrapResults.info.fastest = 'Hapi';
-		wrapResults.info.slowest = 'Restify';
-	}
+		});
 
-
-	//	apiBenchmark.getHtml(results, function(error, html) {
-
-	fs.writeFile('./report-request-' + config.routes + '.json', JSON.stringify(wrapResults), function(err) {
-		if (err) {
-			console.log(err);
-		} else {
-			console.log('The file was saved!');
-		}
 	});
 
-	//	});
 
 });

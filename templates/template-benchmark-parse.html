@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Api Benchmark</title>
+    <!--[if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/jqPlot/1.0.8/excanvas.min.js"></script><![endif]-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+
+    <style type="text/css">
+      .jqplot-target {
+        color: #F1F1F1;
+      }
+      
+      table.jqplot-table-legend, table.jqplot-cursor-legend {
+        background-color: rgba(101, 0, 253, 0.89)
+      }
+      
+      h1{
+        text-align: center;
+      }
+
+      h5{
+        text-align: center;
+        font-weight: 400;
+      }
+
+      body {
+        background: #f3f3f3;
+        color: #383838;
+        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        text-align: center;
+      }
+
+      a {
+        color: #6699FF;
+      }
+
+      #report-details, #charts {
+        width: 100%;
+        float: left;
+        font-family: "Trebuchet MS",Arial,Helvetica,sans-serif;
+      }
+
+      #report-details {
+        margin-bottom: 20px;
+        text-align: center;
+      }
+
+      .buttons {
+        width: 100%;
+        border-bottom: 1px solid rgb(75, 72, 72);
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+        text-align: right;
+      }
+
+      .button {
+        margin-right: 10px;
+        padding: 6px;
+        text-decoration: none;
+      }
+
+      .button.selected {
+        background-color: rgb(56, 56, 56);
+      }
+
+      .chart {
+        width: 60%;
+        height: 450px;
+        float: left;
+      }
+
+      .panel {
+        height: 450px;
+        overflow-y: auto;
+      }
+
+      .route {
+        width: 90%;
+        margin: 3%;
+        padding: 2%;
+        float: left;
+        background-color: #000000;
+        border-radius: 15px;
+      }
+      .stats-details {
+        font-family: "Trebuchet MS",Arial,Helvetica,sans-serif;
+        font-size: 15px;
+        float: left;
+        width: 36%;
+        padding: 2%;
+      }
+
+      .green {
+        color: green;
+      }
+
+      .red {
+        color: red;
+      }
+
+      .hide {
+        display:none;
+      }
+
+      pre code {
+        overflow-x: auto;
+      }
+
+      #logo-4yopping{
+        display: block;
+        float: right;
+        margin: 70px 5% 0 0; 
+      }
+
+      .charts{
+        width: 800px;
+        height: 600px;
+        margin: 0 auto !important;
+        display: block;        
+      }
+
+      #summary{
+        width: 150px;
+        height: 20px;   
+        background: #eaeaea;
+        padding: 7px 10px;
+        margin: 10px auto 30px auto;
+      }
+
+      #summary >span {
+        font-size: 18px;
+        font-weight: 700;
+        font-style: italic;
+      }
+
+    </style>
+  </head>
+  <body>
+    
+    <script>
+
+      var benchmarkData = <%= data %> ;
+
+      // Load the Visualization API and the piechart package.
+      google.load('visualization', '1.0', {
+        'packages': ['corechart']
+      });
+
+
+
+      // Set a callback to run when the Google Visualization API is loaded.
+      google.setOnLoadCallback(drawChart);
+
+      // Callback that creates and populates a data table,
+      // instantiates the pie chart, passes in the data and
+      // draws it.
+      function drawChart() {
+
+        // Create the data table.
+
+        var data = google.visualization.arrayToDataTable([
+          ['Server', 'GET', 'POST', 'PUT', 'DELETE', 'Average'],
+          ['Restify', benchmarkData.duration.restify.get, benchmarkData.duration.restify.post, benchmarkData.duration.restify.put, benchmarkData.duration.restify.delete, benchmarkData.duration.restify.total],
+          ['Hapi', benchmarkData.duration.hapi.get, benchmarkData.duration.hapi.post, benchmarkData.duration.hapi.put, benchmarkData.duration.hapi.delete, benchmarkData.duration.hapi.total]
+        ]);
+
+
+
+        var options = {
+          title: 'Server Restify vs Hapi (smaller is better)',
+          vAxis: {
+            title: "Seconds"
+          },
+          hAxis: {
+            title: "Server"
+          },
+          seriesType: "bars",
+          series: {
+            5: {
+              type: "line"
+            }
+          }
+        };
+
+        var chart = new google.visualization.ComboChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+      }
+
+      $(function() {
+        
+        $('#header').find('>h3').html('Restify<strong>:' + benchmarkData.servers.restify.version + '</strong> vs ' + 'Hapi: <strong>' + benchmarkData.servers.hapi.version + '</strong>').end() 
+        .find('>h5').html('Total request: ' + benchmarkData.totalRequest).end()
+        .find('>small').html('Restify:' + benchmarkData.servers.restify.url + ' <strong>-</strong> ' + 'Hapi:' + benchmarkData.servers.hapi.url);
+
+        $('#summary').find('span:nth-child(1)').text(benchmarkData.fastest);
+
+
+      });
+    </script>
+    <header id="header">
+      <h1>Benchmark Restify vs Hapi</h1>
+      <h3></h3>
+      <h5></h5>
+      <small></small>
+    </header>
+
+    <div id="summary">
+      <span></span>
+      <span>Is fastest!</span>
+    </div>
+
+    <div id="chart_div" class="charts"></div>
+
+
+    <img id="logo-4yopping" src="http://4yopping.com/4yopping.png" width="60px" height="60px" />
+
+  </body>
+</html>
+

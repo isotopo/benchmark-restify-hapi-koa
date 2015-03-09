@@ -7,6 +7,7 @@
     "api-benchmark": "^0.2.1",
     "hapi": "^8.2.0",
     "rc": "^0.6.0",
-    "restify": "^2.8.5"
+    "restify": "^2.8.5",
+    "underscore": "^1.8.2"
   }
 }

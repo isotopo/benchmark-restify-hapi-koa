@@ -1,0 +1,25 @@
+{
+	"node"          : true,
+	"curly"         : true,
+	"eqeqeq"        : true,
+	"eqnull"        : true,
+	"predef"        : [],
+	"globalstrict"  : true,
+	"indent"        : 2,
+	"latedef"       : true,
+	"newcap"        : true,
+	"quotmark"      : "single",
+	"strict"        : true,
+	"trailing"      : true,
+	"undef"         : true,
+	"unused"        : true,
+    "globals"   : {
+        /* MOCHA */
+        "describe"   : false,
+        "it"         : false,
+        "before"     : false,
+        "beforeEach" : false,
+        "after"      : false,
+        "afterEach"  : false
+    }
+}

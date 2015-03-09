@@ -7,8 +7,9 @@ var conf = require('rc')('benchmark', {
 	},
 	servers: {
 		restify: 'http://localhost:3000/',
-		hapi: 'http://localhost:4000/',
+		hapi: 'http://localhost:4000/'
 	},
+	network: 'local',
 	routes: 10
 	
 });
