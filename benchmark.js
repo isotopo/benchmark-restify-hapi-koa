@@ -13,7 +13,8 @@ var fs = require('fs'),
 for (var i = 1; i <= config.routes; i++) {
 	routes['GET/api/' + i] = {
 		method: 'get',
-		route: '/api/' + i
+		route: '/api/' + i,
+		maxConcurrentRequests: 1
 	};
 	routes['POST/api/' + i] = {
 		method: 'post',
@@ -21,7 +22,8 @@ for (var i = 1; i <= config.routes; i++) {
 			test: true,
 			moreData: 'aString'
 		},
-		route: '/api/' + i
+		route: '/api/' + i,
+		maxConcurrentRequests: 1
 	};
 	routes['PUT/api/' + i] = {
 		method: 'put',
@@ -29,11 +31,13 @@ for (var i = 1; i <= config.routes; i++) {
 			test: true,
 			moreData: 'aString'
 		},
-		route: '/api/' + i
+		route: '/api/' + i,
+		maxConcurrentRequests: 1
 	};
 	routes['DELETE/api/' + i] = {
 		method: 'delete',
-		route: '/api/' + i
+		route: '/api/' + i,
+		maxConcurrentRequests: 1
 	};
 }
 
