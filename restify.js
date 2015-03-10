@@ -16,7 +16,7 @@ var createGetRoute = function (route) {
 
 var createPutRoute = function (route) {
   console.log('Route PUT [' + route + ']');
-  server.post(route, function (req, res) {
+  server.put(route, function (req, res) {
     res.send(200, req.params || {});
   });
 };
