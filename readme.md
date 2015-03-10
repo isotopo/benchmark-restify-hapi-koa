@@ -1,6 +1,9 @@
 Benchmark of Restify and Hapi
 =============================
 
+
+![Alt text](https://raw.githubusercontent.com/4yopping/benchmark-restify-hapi/master/screenshot.png "Benchmark restify vs hapi")
+
 # Benchmarks
 
 ```
