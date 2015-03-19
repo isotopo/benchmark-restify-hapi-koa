@@ -4,23 +4,6 @@ Benchmark of Restify and Hapi
 
 ![Alt text](https://raw.githubusercontent.com/4yopping/benchmark-restify-hapi/master/screenshot.png "Benchmark restify vs hapi")
 
-# Benchmarks
-
-```
-> Benchmarking restify.js
-
-  Testing 4000 routes
-
-  ...
-
-> Benchmarking hapi.js
-
-  Testing 4000 routes
-
-  ...
-
-```
-
 
 # Run in a instance restify server
 
