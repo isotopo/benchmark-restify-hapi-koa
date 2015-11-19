@@ -5,9 +5,9 @@
   "main": "restify.js",
   "dependencies": {
     "api-benchmark": "^0.2.1",
-    "hapi": "^8.2.0",
+    "hapi": "^11.1.1",
     "rc": "^0.6.0",
-    "restify": "^2.8.5",
+    "restify": "^4.0.3",
     "underscore": "^1.8.2"
   }
 }
