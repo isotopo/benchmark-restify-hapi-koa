@@ -5,9 +5,17 @@
   "main": "restify.js",
   "dependencies": {
     "api-benchmark": "^0.2.1",
+    "babel-polyfill": "^6.2.0",
     "hapi": "^11.1.1",
+    "koa": "^1.1.2",
+    "koa-bodyparser": "~2.0.1",
+    "koa-router": "^5.2.3",
     "rc": "^0.6.0",
     "restify": "^4.0.3",
     "underscore": "^1.8.2"
+  },
+  "devDependencies": {
+    "babel": "^6.1.18",
+    "babel-preset-es2015": "^6.1.18"
   }
 }
