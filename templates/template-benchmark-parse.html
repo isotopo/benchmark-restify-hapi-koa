@@ -10,11 +10,11 @@
       .jqplot-target {
         color: #F1F1F1;
       }
-      
+
       table.jqplot-table-legend, table.jqplot-cursor-legend {
         background-color: rgba(101, 0, 253, 0.89)
       }
-      
+
       h1{
         text-align: center;
       }
@@ -110,19 +110,19 @@
       #logo-4yopping{
         display: block;
         float: right;
-        margin: 70px 5% 0 0; 
+        margin: 70px 5% 0 0;
       }
 
       .charts{
         width: 800px;
         height: 600px;
         margin: 0 auto !important;
-        display: block;        
+        display: block;
       }
 
       #summary{
         width: 150px;
-        height: 20px;   
+        height: 20px;
         background: #eaeaea;
         padding: 7px 10px;
         margin: 10px auto 30px auto;
@@ -137,7 +137,7 @@
     </style>
   </head>
   <body>
-    
+
     <script>
 
       var benchmarkData = <%= data %> ;
@@ -162,13 +162,14 @@
         var data = google.visualization.arrayToDataTable([
           ['Server', 'GET', 'POST', 'PUT', 'DELETE', 'Average'],
           ['Restify', benchmarkData.duration.restify.get, benchmarkData.duration.restify.post, benchmarkData.duration.restify.put, benchmarkData.duration.restify.delete, benchmarkData.duration.restify.total/ 4],
-          ['Hapi', benchmarkData.duration.hapi.get, benchmarkData.duration.hapi.post, benchmarkData.duration.hapi.put, benchmarkData.duration.hapi.delete, benchmarkData.duration.hapi.total/ 4]
+          ['Hapi', benchmarkData.duration.hapi.get, benchmarkData.duration.hapi.post, benchmarkData.duration.hapi.put, benchmarkData.duration.hapi.delete, benchmarkData.duration.hapi.total/ 4],
+          ['Koa', benchmarkData.duration.koa.get, benchmarkData.duration.koa.post, benchmarkData.duration.koa.put, benchmarkData.duration.koa.delete, benchmarkData.duration.koa.total/ 4]
         ]);
 
 
 
         var options = {
-          title: 'Server Restify vs Hapi (smaller is better)',
+          title: 'Server Restify vs Hapi vs Koa (smaller is better)',
           vAxis: {
             title: "Seconds"
           },
@@ -188,10 +189,10 @@
       }
 
       $(function() {
-        
-        $('#header').find('>h3').html('Restify<strong>:' + benchmarkData.servers.restify.version + '</strong> vs ' + 'Hapi: <strong>' + benchmarkData.servers.hapi.version + '</strong>').end() 
+
+        $('#header').find('>h3').html('Restify<strong>:' + benchmarkData.servers.restify.version + '</strong> vs ' + 'Hapi: <strong>' + benchmarkData.servers.hapi.version + '</strong> vs ' + 'Koa: <strong>' + benchmarkData.servers.koa.version + '</strong>').end()
         .find('>h5').html('Total request: ' + benchmarkData.totalRequest).end()
-        .find('>small').html('Restify:' + benchmarkData.servers.restify.url + ' <strong>-</strong> ' + 'Hapi:' + benchmarkData.servers.hapi.url);
+        .find('>small').html('Restify:' + benchmarkData.servers.restify.url + ' <strong>-</strong> ' + 'Hapi:' + benchmarkData.servers.hapi.url + ' <strong>-</strong> ' + 'Koa:' + benchmarkData.servers.koa.url);
 
         $('#summary').find('span:nth-child(1)').text(benchmarkData.fastest);
 
@@ -199,7 +200,7 @@
       });
     </script>
     <header id="header">
-      <h1>Benchmark Restify vs Hapi</h1>
+      <h1>Benchmark Restify vs Hapi vs Koa</h1>
       <h3></h3>
       <h5></h5>
       <small></small>
@@ -217,4 +218,3 @@
 
   </body>
 </html>
-
