@@ -1,6 +1,6 @@
 Benchmark of Restify and Hapi
 =============================
-![Alt text](https://david-dm.org/4yopping/papi.svg)
+![Alt text](https://david-dm.org/4yopping/benchmark-restify-hapi-koa.svg)
 
 ![Alt text](https://raw.githubusercontent.com/4yopping/benchmark-restify-hapi/master/screenshot.png "Benchmark restify vs hapi")
 
