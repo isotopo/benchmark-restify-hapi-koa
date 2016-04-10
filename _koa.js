@@ -12,32 +12,32 @@ server.use(bodyParser())
 
 let createGetRoute = function (route) {
   console.log('Route GET [' + route + ']')
-  api.get(route, function *() {
-    this.status = 200
-    this.body = this.params || {}
+  api.get(route, (ctx) => {
+    ctx.status = 200
+    ctx.body = ctx.params || {}
   })
 }
 
 let createPutRoute = function (route) {
   console.log('Route PUT [' + route + ']')
-  api.put(route, function *() {
-    this.status = 200
-    this.body = this.params || {}
+  api.put(route, (ctx) => {
+    ctx.status = 200
+    ctx.body = ctx.params || {}
   })
 }
 
 let createPostRoute = function (route) {
   console.log('Route POST [' + route + ']')
-  api.post(route, function *() {
-    this.status = 201
-    this.body = this.params || {}
+  api.post(route, (ctx) => {
+    ctx.status = 201
+    ctx.body = ctx.params || {}
   })
 }
 
 let createDeleteRoute = function (route) {
   console.log('Route DELETE [' + route + ']')
-  api.del(route, function *() {
-    this.status = 204
+  api.del(route, (ctx) => {
+    ctx.status = 204
   })
 }
 

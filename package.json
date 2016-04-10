@@ -4,18 +4,18 @@
   "description": "Benchmark of Restify and Hapi",
   "main": "restify.js",
   "dependencies": {
-    "api-benchmark": "^0.2.1",
-    "babel-polyfill": "^6.2.0",
-    "hapi": "^11.1.1",
-    "koa": "^1.1.2",
-    "koa-bodyparser": "~2.0.1",
-    "koa-router": "^5.2.3",
-    "rc": "^0.6.0",
-    "restify": "^4.0.3",
-    "underscore": "^1.8.2"
+    "api-benchmark": "^0.3.0",
+    "babel-polyfill": "^6.7.4",
+    "hapi": "^13.3.0",
+    "koa": "^2.0.0",
+    "koa-bodyparser": "^3.0.0",
+    "koa-router": "^7.0.1",
+    "rc": "^1.1.6",
+    "restify": "^4.0.4",
+    "underscore": "^1.8.3"
   },
   "devDependencies": {
-    "babel": "^6.1.18",
-    "babel-preset-es2015": "^6.1.18"
+    "babel-cli": "^6.7.5",
+    "babel-preset-es2015": "^6.6.0"
   }
 }

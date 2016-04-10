@@ -27,77 +27,33 @@ server.use((0, _koaBodyparser2.default)());
 
 var createGetRoute = function createGetRoute(route) {
   console.log('Route GET [' + route + ']');
-  api.get(route, regeneratorRuntime.mark(function _callee() {
-    return regeneratorRuntime.wrap(function _callee$(_context) {
-      while (1) {
-        switch (_context.prev = _context.next) {
-          case 0:
-            this.status = 200;
-            this.body = this.params || {};
-
-          case 2:
-          case 'end':
-            return _context.stop();
-        }
-      }
-    }, _callee, this);
-  }));
+  api.get(route, function (ctx) {
+    ctx.status = 200;
+    ctx.body = ctx.params || {};
+  });
 };
 
 var createPutRoute = function createPutRoute(route) {
   console.log('Route PUT [' + route + ']');
-  api.put(route, regeneratorRuntime.mark(function _callee2() {
-    return regeneratorRuntime.wrap(function _callee2$(_context2) {
-      while (1) {
-        switch (_context2.prev = _context2.next) {
-          case 0:
-            this.status = 200;
-            this.body = this.params || {};
-
-          case 2:
-          case 'end':
-            return _context2.stop();
-        }
-      }
-    }, _callee2, this);
-  }));
+  api.put(route, function (ctx) {
+    ctx.status = 200;
+    ctx.body = ctx.params || {};
+  });
 };
 
 var createPostRoute = function createPostRoute(route) {
   console.log('Route POST [' + route + ']');
-  api.post(route, regeneratorRuntime.mark(function _callee3() {
-    return regeneratorRuntime.wrap(function _callee3$(_context3) {
-      while (1) {
-        switch (_context3.prev = _context3.next) {
-          case 0:
-            this.status = 201;
-            this.body = this.params || {};
-
-          case 2:
-          case 'end':
-            return _context3.stop();
-        }
-      }
-    }, _callee3, this);
-  }));
+  api.post(route, function (ctx) {
+    ctx.status = 201;
+    ctx.body = ctx.params || {};
+  });
 };
 
 var createDeleteRoute = function createDeleteRoute(route) {
   console.log('Route DELETE [' + route + ']');
-  api.del(route, regeneratorRuntime.mark(function _callee4() {
-    return regeneratorRuntime.wrap(function _callee4$(_context4) {
-      while (1) {
-        switch (_context4.prev = _context4.next) {
-          case 0:
-            this.status = 204;
-
-          case 1:
-          case 'end':
-            return _context4.stop();
-        }
-      }
-    }, _callee4, this);
-  }));
+  api.del(route, function (ctx) {
+    ctx.status = 204;
+  });
 };
 
 for (var i = 1; i <= _config2.default.routes; i++) {
@@ -112,3 +68,4 @@ server.use(api.routes()).use(api.allowedMethods());
 server.listen(process.env.PORT || _config2.default.ports.koa, function () {
   console.log('Koa listening at port %s', process.env.PORT || _config2.default.ports.koa);
 });
+
